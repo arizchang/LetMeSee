@@ -10,6 +10,8 @@ private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
     private lateinit var btPlay: Button
     private lateinit var soundPool: SoundPool
+    private var soundStreamId: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,7 +21,14 @@ class MainActivity : AppCompatActivity() {
 
         btPlay.setOnClickListener {
             Log.i(TAG, "clicked test")
-            soundPool.play(soundId, 1F, 1F, 0, 0, 1F)
+
+            soundStreamId = if (soundStreamId == 0) {
+                soundPool.play(soundId, 1F, 1F, 0, 0, 1F)
+            } else {
+                soundPool.pause(soundStreamId)
+                0
+            }
+
         }
     }
 
