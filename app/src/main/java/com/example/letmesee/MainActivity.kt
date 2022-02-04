@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 
 private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
@@ -26,9 +27,11 @@ class MainActivity : AppCompatActivity() {
         btPlay.setOnClickListener {
             Log.i(TAG, "let me see")
 
-            soundStreamIdLms = if (soundStreamIdLms == 0) {
-                soundPool.play(soundIdLms, 1F, 1F, 0, 0, 1F)
-            } else {
+            if (soundStreamIdLms == 0) {
+                soundStreamIdLms = soundPool.play(soundIdLms, 1F, 1F, 0, 0, 1F)
+                Toast.makeText(this.applicationContext, "Xiao Wei Xiao speaking...", Toast.LENGTH_SHORT).show()
+            }
+            else {
                 soundPool.pause(soundStreamIdLms)
                 0
             }
@@ -38,9 +41,11 @@ class MainActivity : AppCompatActivity() {
         btDattebayo.setOnClickListener {
             Log.i(TAG, "dattebayo")
 
-            soundStreamIdDattebayo = if (soundStreamIdDattebayo == 0) {
-                soundPool.play(soundIdDattebayo, 1F, 1F, 0, 0, 1F)
-            } else {
+            if (soundStreamIdDattebayo == 0) {
+                soundStreamIdDattebayo = soundPool.play(soundIdDattebayo, 1F, 1F, 0, 0, 1F)
+                Toast.makeText(this.applicationContext, "Naruto speaking...", Toast.LENGTH_SHORT).show()
+            }
+            else {
                 soundPool.pause(soundStreamIdDattebayo)
                 0
             }
